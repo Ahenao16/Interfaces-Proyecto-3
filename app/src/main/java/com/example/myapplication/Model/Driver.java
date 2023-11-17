@@ -1,15 +1,15 @@
 package com.example.myapplication.Model;
 
 public class Driver {
-    private String ID,name,email,password,LocationNumber;
+    private String id,name,email,password,location;
     private int rides, rating;
 
     public String getID() {
-        return ID;
+        return id;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setID(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -37,11 +37,11 @@ public class Driver {
     }
 
     public String getLocationNumber() {
-        return LocationNumber;
+        return location;
     }
 
-    public void setLocationNumber(String locationNumber) {
-        LocationNumber = locationNumber;
+    public void setLocationNumber(String location) {
+        this.location = location;
     }
 
     public int getRides() {

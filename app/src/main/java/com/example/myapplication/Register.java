@@ -36,8 +36,8 @@ public class Register extends AppCompatActivity {
 
         Btn_back = (Button) findViewById(R.id.btn_back);
         Btn_register = (Button) findViewById(R.id.Confirm_register);
-        radioEmployee = (RadioButton) findViewById(R.id.driver_role);
-        radioDriver = (RadioButton) findViewById(R.id.employee_role);
+        radioEmployee = (RadioButton) findViewById(R.id.employee_role);
+        radioDriver = (RadioButton) findViewById(R.id.driver_role);
         ID = (EditText) findViewById(R.id.id_entry);
         Name = (EditText) findViewById(R.id.name_entry);
         Password = (EditText) findViewById(R.id.password_entry);
@@ -55,20 +55,35 @@ public class Register extends AppCompatActivity {
         Btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.e("Henao", "Se presiono el boton");
+
                 if (radioDriver.isChecked()) {
                     Driver driver = new Driver();
-                    driver.setID(String.valueOf(ID.getText()));
-                    driver.setName(String.valueOf(Name.getText()));
-                    driver.setEmail(String.valueOf(Email.getText()));
-                    driver.setPassword(String.valueOf(Password.getText()));
-                    driver.setLocationNumber(String.valueOf(LocationNumber.getText()));
+                    driver.setID(ID.getText().toString());
+                    driver.setName(Name.getText().toString());
+                    driver.setEmail(Email.getText().toString());
+                    driver.setPassword(Password.getText().toString());
+                    driver.setLocationNumber(LocationNumber.getText().toString());
+                    driver.setRides(0);
+                    driver.setRating(0);
 
+                    String iddriver = driver.getID();
+                    String loca = driver.getLocationNumber();
+
+                    Log.e("Henao", "ID:"+ iddriver);
+                    Log.e("Henao", "Location"+ loca);
+
+                    RegisterDriver(driver);
                 }
+                return;
             }
         });
     }
 
     public void RegisterDriver(Driver driver){
+
+        Log.e("Henao", "Se mando a registro");
+
         String ipAddress = LocalIP.localip;
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://" + ipAddress + ":8080/server/")
@@ -84,6 +99,7 @@ public class Register extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
+                    Log.e("Henao", "Registro exitoso");
                     Toast.makeText(Register.this, "Registro Exitoso", Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(Register.this, MainActivity.class);

@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Driver"
+        android:checked="true"
         app:layout_constraintBottom_toTopOf="@+id/Confirm_register"
         app:layout_constraintEnd_toStartOf="@+id/employee_role"
         app:layout_constraintStart_toStartOf="parent"
